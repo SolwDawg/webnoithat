@@ -1,0 +1,49 @@
+.shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-3 {
+    width: 80px;
+}
+
+.shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-3 input {
+    width: 50px;
+    border: none;
+    text-align: center;
+    color: #111111;
+    font-size: 16px;
+}
+
+.shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-3 .qtybtn {
+    font-size: 16px;
+    color: #888888;
+    width: 10px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.product__details__cart__option .quantity .pro-qty-4 {
+    width: 100px;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    position: relative;
+}
+
+.product__details__cart__option .quantity .pro-qty-4 input {
+    color: #0d0d0d;
+    font-size: 15px;
+    font-weight: 700;
+    width: 70px;
+    height: 100%;
+    text-align: center;
+    border: none;
+}
+
+.product__details__cart__option .quantity .pro-qty-4 .qtybtn {
+    font-size: 18px;
+    color: #0d0d0d;
+    position: absolute;
+    right: 15px;
+    top: 3px;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}

@@ -2,6 +2,7 @@
 @section('title', 'Home page')
 @section('content')
 
-    <livewire:frontend.wishlist-show />
-
+    <div>
+        <livewire:frontend.wishlist-show />
+    </div>
 @endsection

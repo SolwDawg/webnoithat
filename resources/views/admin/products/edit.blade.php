@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="control-label">Brand</label>
-                                    <select class="form-control custom-select" name="brand_id">
+                                    <select class="form-control custom-select" name="brand">
                                         @foreach($brands as $brand)
                                             <option
                                                 value="{{ $brand->name }}" {{ $brand->name == $product->brand ? 'selected' : '' }}>
@@ -146,6 +146,13 @@
                                             <label>Trending</label>
                                             <input type="checkbox"
                                                    name="trending" {{ $product->trending == 1 ? 'checked' : '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label>Featured</label>
+                                            <input type="checkbox"
+                                                   name="featured" {{ $product->featured == 1 ? 'checked' : '' }}>
                                         </div>
                                     </div>
                                     <div class="col-md-4">

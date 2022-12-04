@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -26,11 +26,14 @@
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/css/theme-default.css')}}"
           class="template-customizer-theme-css"/>
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo.css')}}"/>
+{{--    <link rel="stylesheet" href="{{asset('admin/assets/css/custom.css')}}">--}}
+{{--    <link rel="stylesheet" href="{{asset('admin/assets/css/customize.css')}}">--}}
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}"/>
 
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/libs/apex-charts/apex-charts.css')}}"/>
+    @stack('css')
 
     <!-- Page CSS -->
 
@@ -91,12 +94,26 @@
 
 <!-- Vendors JS -->
 <script src="{{asset('admin/assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+<script src="{{asset('admin/assets/vendor/js/simple.money.format.js')}}"></script>
 
 <!-- Main JS -->
 <script src="{{asset('admin/assets/js/main.js')}}"></script>
 
 <!-- Page JS -->
 <script src="{{asset('admin/assets/js/dashboards-analytics.js')}}"></script>
+
+<script src="{{ asset('assets/ckeditor5-build-classic/ckeditor.js') }}"></script>
+<script>
+    {{--    ClassicEditor--}}
+    {{--        .create(document.querySelector('#description'))--}}
+    {{--        .catch(error => {--}}
+    {{--            console.error(error);--}}
+    {{--        });--}}
+
+    $('.price_format').simpleMoneyFormat();
+
+</script>
+
 
 @yield('scripts')
 

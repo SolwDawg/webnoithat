@@ -404,7 +404,7 @@ ol {
 }
 
 .header__logo {
-	padding: 30px 0;
+	padding: 10px 0;
 }
 
 .header__logo a {
@@ -1756,7 +1756,7 @@ ol {
 
 .product__details__cart__option .quantity {
 	display: inline-block;
-	margin-right: 20px;
+	margin-right: 40px;
 }
 
 .product__details__cart__option .quantity .pro-qty {
@@ -1776,7 +1776,7 @@ ol {
 	border: none;
 }
 
-.product__details__cart__option .quantity .pro-qty .qtybtn {
+.product__details__cart__option .quantity .pro-qty .qtybtnInc {
 	font-size: 18px;
 	color: #0d0d0d;
 	position: absolute;

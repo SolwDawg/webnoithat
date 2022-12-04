@@ -26,14 +26,15 @@
                     $q->whereIn('brand', $this->brandInputs);
                 })
                 ->when($this->priceInput, function ($q) {
-                    $q->when($this->priceInput == 'low-to-high', function ($q2) {
-                        $q2->orderBy('selling_price', 'ASC');
-                    })->when($this->priceInput == 'high-to-low', function ($q2) {
+                    $q->when($this->priceInput == 'high-to-low', function ($q2) {
                         $q2->orderBy('selling_price', 'DESC');
+                    })->when($this->priceInput == 'low-to-high', function ($q2) {
+                        $q2->orderBy('selling_price', 'ASC');
                     });
                 })
                 ->where('status', '0')
                 ->get();
+
             return view('livewire.frontend.product.index', [
                 'products' => $this->products,
                 'category' => $this->category,

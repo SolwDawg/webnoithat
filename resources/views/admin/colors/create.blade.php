@@ -30,10 +30,8 @@
                             <input type="checkbox" name="status"> Checked=Hidden, UnChecked=Visible
                         </div>
 
-                        <div class="row justify-content-end">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Add Product</button>
-                            </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Add Color</button>
                         </div>
                     </form>
                 </div>

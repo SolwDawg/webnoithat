@@ -72,7 +72,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="control-label">Brand</label>
-                                <select class="form-control custom-select" name="brand_id">
+                                <select class="form-control custom-select" name="brand">
                                     @foreach($brands as $brand)
                                         <option value="{{ $brand->name }}">{{ $brand->name }}</option>
                                     @endforeach
@@ -84,7 +84,7 @@
                             </div>
                             <div class="mb-3">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" rows="4"></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="8"></textarea>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="navs-pills-top-seo" role="tabpanel">
@@ -125,6 +125,12 @@
                                     <div class="mb-3">
                                         <label>Trending</label>
                                         <input type="checkbox" name="trending">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label>Featured</label>
+                                        <input type="checkbox" name="featured">
                                     </div>
                                 </div>
                                 <div class="col-md-4">

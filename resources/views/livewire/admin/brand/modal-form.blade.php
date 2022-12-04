@@ -34,8 +34,9 @@
                     <div class="row mb-3">
                         <div class="col mb-3">
                             <label for="slug" class="form-label">Brand Slug</label>
+                            {{--                            wire:model.defer="foo"	Defers syncing the input with the Livewire property until an "action" is performed. This saves drastically on server roundtrips.--}}
                             <input type="text" id="slug" name="slug" class="form-control" placeholder="Enter Name"
-                                  wire:change.prevent="getSlug" wire:model.defer="slug"/>
+                                   wire:change.prevent="getSlug" wire:model.defer="slug"/>
                             @error('slug') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
                     </div>

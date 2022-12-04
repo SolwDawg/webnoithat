@@ -17,8 +17,13 @@
             'name',
             'email',
             'password',
-            'type'
+            'role',
         ];
+
+        public function userDetail(): \Illuminate\Database\Eloquent\Relations\HasOne
+        {
+            return $this->hasOne(UserDetail::class, 'user_id', 'id');
+        }
 
         protected $hidden = [
             'password',

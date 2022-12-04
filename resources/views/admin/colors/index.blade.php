@@ -33,11 +33,11 @@
                             <td>{{ $color->status ? 'Hidden' : 'Visible' }}</td>
                             <td>
                                 <a href="{{ route('admin.colors.edit', $color->id) }}"
-                                   class="btn btn-primary">Edit</a>
+                                   class="btn btn-primary float-start m-1">Edit</a>
                                 <form method="post" action="{{ route('admin.colors.destroy', $color->id)}}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                    <button class="btn btn-danger m-1" type="submit">Delete</button>
                                 </form>
                             </td>
                         </tr>

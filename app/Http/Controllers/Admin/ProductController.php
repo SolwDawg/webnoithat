@@ -14,13 +14,19 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\File;
     use Illuminate\Support\Str;
+    use Yajra\Datatables\Facades\Datatables;
 
     class ProductController extends Controller
     {
         public function index()
         {
-            $products = Product::all();
+            $products = Product::orderBy('id', 'DESC')->paginate(5);
             return view('admin.products.index', compact('products'));
+        }
+
+        public function api()
+        {
+            return Datatables::of(Product::query())->make(true);
         }
 
         public function create()
@@ -40,12 +46,14 @@
                 'category_id' => $validatedData['category_id'],
                 'name' => $validatedData['name'],
                 'slug' => Str::slug($validatedData['slug']),
+                'brand' => $validatedData['brand'],
                 'small_description' => $validatedData['small_description'],
                 'description' => $validatedData['description'],
                 'original_price' => $validatedData['original_price'],
-                'selling_price' => $validatedData['selling_price'],
+                'selling_price' => $validatedData['original_price'],
                 'quantity' => $validatedData['quantity'],
                 'trending' => $request->trending == true ? 1 : 0,
+                'featured' => $request->featured == true ? 1 : 0,
                 'status' => $request->status == true ? 1 : 0,
                 'meta_title' => $validatedData['meta_title'],
                 'meta_keyword' => $validatedData['meta_keyword'],
@@ -105,12 +113,14 @@
                     'category_id' => $validatedData['category_id'],
                     'name' => $validatedData['name'],
                     'slug' => Str::slug($validatedData['slug']),
+                    'brand' => $validatedData['brand'],
                     'small_description' => $validatedData['small_description'],
                     'description' => $validatedData['description'],
-                    'original_price' => $validatedData['original_price'],
-                    'selling_price' => $validatedData['selling_price'],
+                    'original_price' => filter_var($validatedData['original_price'], FILTER_SANITIZE_NUMBER_INT),
+                    'selling_price' => filter_var($validatedData['selling_price'], FILTER_SANITIZE_NUMBER_INT),
                     'quantity' => $validatedData['quantity'],
                     'trending' => $request->trending == true ? 1 : 0,
+                    'featured' => $request->featured == true ? 1 : 0,
                     'status' => $request->status == true ? 1 : 0,
                     'meta_title' => $validatedData['meta_title'],
                     'meta_keyword' => $validatedData['meta_keyword'],

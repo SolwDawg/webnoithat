@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/Product-Carousel-Magnifying-Effect-exzoom/src/jquery.exzoom.css')}}">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 
@@ -54,6 +56,7 @@
 <script src="{{ asset('assets/js/jquery.slicknav.js') }}"></script>
 <script src="{{ asset('assets/js/mixitup.min.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('assets/Product-Carousel-Magnifying-Effect-exzoom/src/jquery.exzoom.js')}}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
 <script>

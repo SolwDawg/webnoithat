@@ -4,17 +4,20 @@
 
     @include('layouts.inc.frontend.breadcrumb')
 
-    <div class="py-4">
-        <div class="row justify-content-center">
+    <div class="container py-3 py-md-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Our Categories</h2>
+            </div>
             @forelse ($categories as $category)
-                <div class="col-6 col-md-3">
-                    <div class="card-header">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 p-4">
+                    <div class="product__item border-3">
                         <a href="{{ url('/collections/'.$category->slug)  }}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    {{ $category->name }}
-                                    <img src="{{ $category->image }}">
-                                </h5>
+                            <div class="product__item__pic set-bg"
+                                 data-setbg="{{ $category->image }}">
+                            </div>
+                            <div class="py-4 text-center">
+                                <h5>{{ $category->name }}</h5>
                             </div>
                         </a>
                     </div>
@@ -22,4 +25,5 @@
             @empty
             @endforelse
         </div>
+    </div>
 @endsection

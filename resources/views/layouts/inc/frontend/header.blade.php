@@ -9,7 +9,6 @@
     <div class="offcanvas__option">
         <div class="offcanvas__links">
             <a href="#">Sign in</a>
-            <a href="#">FAQs</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
                 <span>Log out</span>
@@ -26,9 +25,14 @@
     </div>
     <div class="offcanvas__nav__option">
         <a href="#" class="search-switch"><img src="{{ asset('assets/img/icon/search.png') }}" alt=""></a>
-        <a href="#"><img src="{{ asset('assets/img/icon/heart.png') }}" alt=""></a>
-        <a href="#"><img src="{{ asset('assets/img/icon/cart.png') }}" alt=""> <span>0</span></a>
-        <div class="price">$0.00</div>
+        <a class="nav-link" href="{{ route('cart') }}">
+            <img src="{{ asset('assets/img/icon/cart.png') }}" alt="">
+            <span class="badge badge-pill bg-danger text-white"><livewire:frontend.cart.cart-count/></span>
+        </a>
+        <a class="nav-link" href="{{ route('wishlist') }}">
+            <img src="{{ asset('assets/img/icon/heart.png') }}" alt="">
+            <span class="badge badge-pill bg-danger text-white"><livewire:frontend.wishlist-count/></span>
+        </a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__text">
@@ -48,68 +52,69 @@
                 </div>
                 <div class="col-lg-6 col-md-5">
                     <div class="header__top__right">
-                        <div class="header__top__links">
-                            <a href="{{ route('login') }}">Sign in</a>
-                            <a href="#">FAQs</a>
-                        </div>
-                        <div class="header__top__links">
-                            <a class="dropdown-item align-middle" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
+                        @auth
+                            <div class="header__top__links">
+                                <span class="text-white">{{ Auth::user()->name }}</span>
+                            </div>
+                            <div class="header__top__links">
+                                <a class="dropdown-item align-middle" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <i class="bx bx-power-off me-2"></i> {{ __('Log Out') }}
+                                    <i class="bx bx-power-off me-2"></i> {{ __('Log Out') }}
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </a>
-                        </div>
-                        <div class="header__top__hover">
-                            <span>Usd <i class="arrow_carrot-down"></i></span>
-                            <ul>
-                                <li>USD</li>
-                                <li>EUR</li>
-                                <li>USD</li>
-                            </ul>
-                        </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </a>
+                            </div>
+                        @else
+                            <div class="header__top__links">
+                                <a href="{{ route('login') }}">Sign in</a>
+                                <a href="#">FAQs</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3">
-                <div class="header__logo">
-                    <a href="{{ url('/') }}"><img src="{{ asset('assets/img/logo.png') }}" alt=""></a>
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-8 d-flex justify-content-between align-items-center">
+                <div class="header__logo p-0">
+                    <a href="{{ url('/') }}"><img src="{{ asset('assets/img/banner/Logo.png') }}" width="60px"
+                                                  alt=""></a>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ route('category') }}">Categories</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./about.html">About Us</a></li>
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                            </ul>
+                        <li class="{{ Request::is('/') ? 'active' : '' }}">
+                            <a href="{{ url('/') }}">Home</a>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contacts</a></li>
+                        <li class="{{ Request::is('collections') ? 'active' : '' }}">
+                            <a href="{{ route('category') }}">Categories</a></li>
+                        <li class="{{ Request::is('contact') ? 'active' : '' }}">
+                            <a href=" ./contact.html">Contacts</a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-4 col-md-12 py-md-2 py-sm-2">
+                <form action="{{ route('searchProducts') }}" method="GET" class="d-flex">
+                    <input class="form-control mx-2" type="search" name="search" value="{{ Request::get('search') }}"
+                           placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit"><img
+                            src="{{ asset('assets/img/icon/search.png') }}" alt=""></button>
+                </form>
+            </div>
+            <div class="col-lg-3 col-md-4">
                 <div class="header__nav__option">
-                    <a href="#" class="search-switch"><img src="{{ asset('assets/img/icon/search.png') }}" alt=""></a>
-                    <a href="{{ route('wishlist') }}">
-                        <img src="{{ asset('assets/img/icon/heart.png') }}" alt="">
-                        <span>(<livewire:frontend.wishlist-count/>)</span>
+                    <a class="nav-link" href="{{ route('cart') }}">
+                        <img src="{{ asset('assets/img/icon/cart.png') }}" alt="">
+                        <span class="badge badge-pill bg-danger text-white"><livewire:frontend.cart.cart-count/></span>
                     </a>
-                    <a href="#"><img src="{{ asset('assets/img/icon/cart.png') }}" alt=""> <span><livewire:frontend.cart.cart-count /></span></a>
+                    <a class="nav-link" href="{{ route('wishlist') }}">
+                        <img src="{{ asset('assets/img/icon/heart.png') }}" alt="">
+                        <span class="badge badge-pill bg-danger text-white"><livewire:frontend.wishlist-count/></span>
+                    </a>
                 </div>
             </div>
         </div>

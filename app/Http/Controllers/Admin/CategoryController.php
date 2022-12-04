@@ -24,6 +24,7 @@
 
         public function store(CategoryFormRequest $request)
         {
+            // Retrieve the validated input data...
             $validatedData = $request->validated();
 
             $category = new Category;

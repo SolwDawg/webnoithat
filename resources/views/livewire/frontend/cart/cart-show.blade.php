@@ -47,17 +47,31 @@
                                         @endif
                                         <td class="quantity__item">
                                             <div class="quantity">
-                                                <div class="pro-qty-2">
+                                                <div class="pro-qty-3 d-flex justify-content-center">
+                                                    <button type="button" wire:loading.attr="disabled"
+                                                            wire:click="decrementQuantity({{ $cartItem->id }})"
+                                                            class="fa fa-angle-left dec qtybtn"></button>
                                                     <input type="text" value="{{ $cartItem->quantity }}">
+                                                    <button type="button" wire:loading.attr="disabled"
+                                                            wire:click="incrementQuantity({{ $cartItem->id }})"
+                                                            class="fa fa-angle-right inc qtybtn"></button>
                                                 </div>
                                             </div>
+                                        <td class="cart__price">{{ $cartItem->product->selling_price * $cartItem->quantity }}</td>
+                                        @php
+                                            $totalPrice += $cartItem->product->selling_price * $cartItem->quantity
+                                        @endphp
+                                        <td class="cart__close">
+                                            <button type="button" wire:click="removeCartItem({{ $cartItem->id }})">
+                                                <i class="fa fa-close"></i>
+                                            </button>
                                         </td>
-                                        <td class="cart__price">{{ $cartItem->product->selling_price }}</td>
-                                        <td class="cart__close"><i class="fa fa-close"></i></td>
                                     </tr>
                                 @endif
                             @empty
-                                <div>No cart available</div>
+                                <tr>
+                                    <td><h5 class="text-center">No Cart Added</h5></td>
+                                </tr>
                             @endforelse
                             </tbody>
                         </table>
@@ -65,12 +79,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="#">Continue Shopping</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn update__btn">
-                                <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                                <a href="{{ url('/collections') }}">Continue Shopping</a>
                             </div>
                         </div>
                     </div>
@@ -86,8 +95,7 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Total <span>{{ $totalPrice }}</span></li>
                         </ul>
                         <a href="#" class="primary-btn">Proceed to checkout</a>
                     </div>

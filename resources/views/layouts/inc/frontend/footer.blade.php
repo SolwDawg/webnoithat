@@ -5,20 +5,19 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="{{ asset('assets/img/footer-logo.png') }}" alt=""></a>
+                        <a href="{{ url('/')  }}"><img src="{{ asset('assets/img/banner/Logo_removebg.png') }}" alt="" width="80px"></a>
                     </div>
-                    <p>The customer is at the heart of our unique business model, which includes design.</p>
-                    <a href="#"><img src="{{ asset('assets/img/payment.png') }}" alt=""></a>
+                    <p>{{ $appSetting->meta_description }}</p>
                 </div>
             </div>
             <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
                 <div class="footer__widget">
                     <h6>Shopping</h6>
                     <ul>
-                        <li><a href="#">Clothing Store</a></li>
-                        <li><a href="#">Trending Shoes</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Sale</a></li>
+                        <li><a href="{{ url('/collections') }}">Shop</a></li>
+                        <li><a href="{{ url('/new-arrivals') }}">New Arrivals</a></li>
+                        <li><a href="{{ url('/trending') }}">Trending</a></li>
+                        <li><a href="{{ url('/featured') }}">Featured</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,6 +45,41 @@
                 </div>
             </div>
         </div>
+
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4 text-center">
+                <!-- Facebook -->
+                <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #3b5998;"
+                   href="{{ $appSetting->facebook ?? '' }}"
+                   role="button">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+
+                <!-- Twitter -->
+                <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #55acee;"
+                   href="{{ $appSetting->twitter ?? '' }}"
+                   role="button">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+
+                <!-- Google -->
+                <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #dd4b39;"
+                   href="{{ $appSetting->youtube ?? '' }}"
+                   role="button">
+                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                </a>
+
+                <!-- Instagram -->
+                <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #ac2bac;"
+                   href="{{ $appSetting->instagram ?? '' }}"
+                   role="button">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="footer__copyright__text">
@@ -54,15 +88,12 @@
                         <script>
                             document.write(new Date().getFullYear());
                         </script>
-                        2020
-                        All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                                                            aria-hidden="true"></i> by <a
-                            href="https://colorlib.com" target="_blank">Colorlib</a>
                     </p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </div>
             </div>
         </div>
+
     </div>
 </footer>
 <!-- Footer Section End -->

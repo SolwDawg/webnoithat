@@ -1,0 +1,40 @@
+.auth .bx {
+    padding: 8px;
+    width: 35px;
+    text-align: center;
+    text-decoration:  none;
+    margin: 0 10px;
+    border-radius: 50%;
+}
+
+.auth .bxl-facebook {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.auth .bxl-instagram {
+    background-color: #e1306c;
+    color: #fff;
+}
+
+.auth .bxl-google {
+    background: #dd4b39;
+    color: #fff;
+}
+
+
+.product__details__cart__option .quantity .pro-qty-4 {
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    position: relative;
+}
+
+.product__details__cart__option .quantity .pro-qty-4 input {
+    color: #0d0d0d;
+    font-size: 15px;
+    font-weight: 700;
+    width: 70px;
+    height: 100%;
+    text-align: center;
+}
+
