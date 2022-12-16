@@ -46,7 +46,7 @@
             <div class="table-responsive text-nowrap my-2">
                 <table class="table">
                     <thead class="table-light">
-                    <tr>
+                    <tr class="text-nowrap">
                         <th>ID</th>
                         <th>Category Name</th>
                         <th>Status</th>

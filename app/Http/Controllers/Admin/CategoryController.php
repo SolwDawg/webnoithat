@@ -7,8 +7,7 @@
     use App\Models\Category;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\File;
-    use Illuminate\Support\Str;
-    use \Cviebrock\EloquentSluggable\Services\SlugService;
+    use Cviebrock\EloquentSluggable\Services\SlugService;
 
     class CategoryController extends Controller
     {
@@ -24,7 +23,6 @@
 
         public function store(CategoryFormRequest $request)
         {
-            // Retrieve the validated input data...
             $validatedData = $request->validated();
 
             $category = new Category;
@@ -46,7 +44,7 @@
             $category->meta_keyword = $validatedData['meta_keyword'];
             $category->meta_description = $validatedData['meta_description'];
 
-            $category->status = $request->status == true ? '1' : '0';
+            $category->status = $request->status ? '1' : '0';
             $category->save();
 
             return redirect()->route('admin.category.index')->with('message', 'Category Added Successfully');
@@ -85,7 +83,7 @@
             $category->meta_keyword = $validatedData['meta_keyword'];
             $category->meta_description = $validatedData['meta_description'];
 
-            $category->status = $request->status == true ? '1' : '0';
+            $category->status = $request->status ? '1' : '0';
             $category->update();
 
             return redirect()->route('admin.category.index')->with('message', 'Category Updated Successfully');

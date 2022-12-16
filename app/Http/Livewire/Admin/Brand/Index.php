@@ -4,11 +4,11 @@
 
     use App\Models\Brand;
     use App\Models\Category;
+    use Cviebrock\EloquentSluggable\Services\SlugService;
     use Illuminate\Http\Request;
     use Illuminate\Support\Str;
     use Livewire\Component;
     use Livewire\WithPagination;
-    use \Cviebrock\EloquentSluggable\Services\SlugService;
 
     class Index extends Component
     {
@@ -36,6 +36,11 @@
             $this->status = null;
             $this->brand_id = null;
             $this->category_id = null;
+        }
+
+        public function updatedName()
+        {
+            $this->slug = SlugService::createSlug(Brand::class, 'slug', $this->name);
         }
 
         public function openModal()
@@ -97,13 +102,6 @@
             session()->flash('message', 'Brand Delete Successfully');
             $this->dispatchBrowserEvent('close-modal');
             $this->resetInput();
-        }
-
-        public function getSlug(Request $request)
-        {
-            $slug = SlugService::createSlug(Brand::class, 'slug', $request->name);
-
-            return response()->json(['status' => true, 'slug' => $slug,]);
         }
 
         public function render()

@@ -47,7 +47,7 @@
                             </div>
                         </div>
 
-                        <hr class="m-1">
+                        <hr class="divider divider-primary m-1">
 
                         <h2 class="my-3 text-center">SEO Tags</h2>
 

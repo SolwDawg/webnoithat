@@ -15,19 +15,4 @@
         {
             return view('home');
         }
-
-        public function userHome()
-        {
-            return view('home', ['msg' => 'I am a user']);
-        }
-
-        public function managerHome()
-        {
-            return view('home', ['msg' => 'I am a manager']);
-        }
-
-        public function adminHome()
-        {
-            return view('home', ['msg' => 'I am a admin']);
-        }
     }

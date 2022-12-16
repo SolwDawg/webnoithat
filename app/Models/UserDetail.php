@@ -14,7 +14,7 @@
         protected $fillable = [
             'user_id',
             'phone',
+            'pin_code',
             'address',
-            'image',
         ];
 }

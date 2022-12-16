@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Edit Product')
+
 @section('content')
 
     <div>
@@ -62,7 +64,7 @@
                             <div class="tab-pane fade show active" id="navs-pills-top-information" role="tabpanel">
                                 <div class="mb-3">
                                     <label class="control-label">Category</label>
-                                    <select class="form-control custom-select" name="category_id">
+                                    <select class="form-select custom-select" name="category_id">
                                         @foreach($categories as $category)
                                             <option
                                                 value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
@@ -73,15 +75,15 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>Product Name</label>
-                                    <input type="text" class="form-control" value="{{ $product->name }}" name="name">
+                                    <input type="text" class="form-control" id="name" value="{{ $product->name }}" name="name">
                                 </div>
                                 <div class="mb-3">
                                     <label>Product Slug</label>
-                                    <input type="text" class="form-control" value="{{ $product->slug }}" name="slug">
+                                    <input type="text" class="form-control" id="slug" value="{{ $product->slug }}" name="slug">
                                 </div>
                                 <div class="mb-3">
                                     <label class="control-label">Brand</label>
-                                    <select class="form-control custom-select" name="brand">
+                                    <select class="form-select custom-select" name="brand">
                                         @foreach($brands as $brand)
                                             <option
                                                 value="{{ $brand->name }}" {{ $brand->name == $product->brand ? 'selected' : '' }}>
@@ -97,8 +99,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>Description</label>
-                                    <textarea class="form-control" name="description"
-                                              rows="4">{{ $product->description }}</textarea>
+                                    <textarea class="form-control" id="description" name="description"
+                                              rows="4">{!! $product->description !!}</textarea>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="navs-pills-top-seo" role="tabpanel">
@@ -123,14 +125,14 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label>Original Price</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control price_format"
                                                    value="{{ $product->original_price }}" name="original_price">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label>Selling Price</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control price_format"
                                                    value="{{ $product->selling_price }}" name="selling_price">
                                         </div>
                                     </div>
@@ -175,10 +177,10 @@
                                             @foreach($product->productImages as $image)
                                                 <div class="col-md-2">
                                                     <img src="{{ asset($image->image) }}"
-                                                         style="width: 80px; height: 80px"
+                                                         style="width: 300px"
                                                          class="me-3"/>
                                                     <a href="{{ route('admin.deleteImage', $image->id) }}"
-                                                       class="d-block">Remove</a>
+                                                       class="d-block text-center">Remove</a>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -261,7 +263,7 @@
 
 @endsection
 
-@section('scripts')
+@push('script')
 
     <script>
         $(document).ready(function () {
@@ -309,7 +311,23 @@
                     }
                 });
             });
+            $(document).ready(function () {
+                $('#name').change(function () {
+                    $("button[type='submit]").prop('disabled', true);
+                    $.ajax({
+                        url: '{{ route("admin.products.slug") }}',
+                        type: 'get',
+                        data: {name: $(this).val()},
+                        dataType: 'json',
+                        success: function (response) {
+                            $("button[type='submit]").prop('disabled', false);
+                            $("#slug").val(response.slug);
+                        }
+                    });
+                });
+            });
         });
     </script>
 
-@endsection
+@endpush
+

@@ -11,8 +11,7 @@
                                 <th>Product Name</th>
                                 <th>Product Image</th>
                                 <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -22,23 +21,20 @@
                                         <td>
                                             <div class="product__cart__item__text">
                                                 <a href="{{ url('collections/'.$wishlistItem->product->category->slug.'/'. $wishlistItem->product->slug)}}">
-                                                    <h6>{{ $wishlistItem->product->name }}</h6>
+                                                    <h4 class="text-center">{{ $wishlistItem->product->name }}</h4>
                                                 </a>
                                             </div>
                                         </td>
                                         <td class="product__cart__item">
-                                            <div class="product__cart__item__pic">
-                                                <img src="{{ $wishlistItem->product->productImages[0]->image }}"
-                                                     alt="{{ $wishlistItem->product->name }}">
-                                            </div>
-                                        </td>
-                                        <td><h5>{{ $wishlistItem->product->selling_price }}</h5></td>
-                                        <td class="quantity__item">
-                                            <div class="quantity">
-                                                <div class="pro-qty-2 m-0">
-                                                    <input type="text" value="1">
+                                            <a href="{{ url('collections/'.$wishlistItem->product->category->slug.'/'. $wishlistItem->product->slug)}}">
+                                                <div class="product__cart__item__pic d-flex justify-content-center align-items-center">
+                                                    <img src="{{ $wishlistItem->product->productImages[0]->image }}"
+                                                         alt="{{ $wishlistItem->product->name }}" style="max-width: 200px;">
                                                 </div>
-                                            </div>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <h5 class="text-center">{{ number_format($wishlistItem->product->selling_price, 0, ',', '.') }} VND</h5>
                                         </td>
                                         <td class="cart__price">{{ $wishlistItem->totalPrice }}</td>
                                         <td class="cart__close">
@@ -51,7 +47,8 @@
                                 @endif
                             @empty
                                 <tr>
-                                    <td>No Wishlist Added</td></tr>
+                                    <td>No Wishlist Added</td>
+                                </tr>
                             @endforelse
                             </tbody>
                         </table>

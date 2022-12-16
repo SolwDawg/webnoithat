@@ -21,13 +21,14 @@
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/fonts/boxicons.css')}}"/>
 
     <!-- Core CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/css/core.css')}}"
           class="template-customizer-core-css"/>
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/css/theme-default.css')}}"
           class="template-customizer-theme-css"/>
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo.css')}}"/>
-{{--    <link rel="stylesheet" href="{{asset('admin/assets/css/custom.css')}}">--}}
-{{--    <link rel="stylesheet" href="{{asset('admin/assets/css/customize.css')}}">--}}
+    <link rel="stylesheet" href="{{asset('admin/assets/css/custom.css')}}">
+    {{--    <link rel="stylesheet" href="{{asset('admin/assets/css/customize.css')}}">--}}
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}"/>
@@ -103,15 +104,15 @@
 <script src="{{asset('admin/assets/js/dashboards-analytics.js')}}"></script>
 
 <script src="{{ asset('assets/ckeditor5-build-classic/ckeditor.js') }}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 <script>
-    {{--    ClassicEditor--}}
-    {{--        .create(document.querySelector('#description'))--}}
-    {{--        .catch(error => {--}}
-    {{--            console.error(error);--}}
-    {{--        });--}}
+    ClassicEditor
+        .create(document.querySelector('#description'))
+        .catch(error => {
+            console.error(error);
+        });
 
     $('.price_format').simpleMoneyFormat();
-
 </script>
 
 

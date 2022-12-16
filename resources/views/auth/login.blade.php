@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'Login')
+
 @section('content')
     <div class="container-xxl m-auto d-flex justify-content-center">
         <div class="row text authentication-wrapper authentication-basic container-p-y w-px-600">
@@ -96,5 +98,4 @@
             </div>
         </div>
     </div>
-
 @endsection

@@ -171,27 +171,8 @@
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6>{{ $product->name }}</h6>
-                                        <a href="#" class="add-cart">+ Add To Cart</a>
-                                        <div class="rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <h5>{{ $product->selling_price }}</h5>
-                                        <div class="product__color__select">
-                                            <label for="pc-4">
-                                                <input type="radio" id="pc-4">
-                                            </label>
-                                            <label class="active black" for="pc-5">
-                                                <input type="radio" id="pc-5">
-                                            </label>
-                                            <label class="grey" for="pc-6">
-                                                <input type="radio" id="pc-6">
-                                            </label>
-                                        </div>
+                                        <h5>{{ $product->name }}</h5>
+                                        <h6 class="py-1">{{ $product->selling_price }}</h6>
                                     </div>
                                 </div>
                             </div>

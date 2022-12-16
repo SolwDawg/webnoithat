@@ -14,40 +14,42 @@
                 <a href="{{ route('admin.sliders.create') }}" class="btn btn-primary">Add New Slider</a>
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead class="table-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0 table-striped">
-                    @foreach ($sliders as $slider)
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead class="table-light">
                         <tr>
-                            <td>{{ $slider->id }}</td>
-                            <td>{{ $slider->title }}</td>
-                            <td>{!!   $slider->description !!}</td>
-                            <td class="image-cell" style="width: 250px">
-                                <img src="{{ asset("$slider->image") }}" style="max-width: 100%;">
-                            </td>
-                            <td>{{ $slider->status == 0 ? 'Visible' : 'Hidden' }}</td>
-                            <td>
-                                <a href="{{ route('admin.sliders.edit',$slider->id) }}"
-                                   class="btn btn-primary float-start">Edit</a>
-                                <form method="POST" action="{{ route('admin.sliders.destroy',$slider->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger ms-1" type="submit">Delete</button>
-                                </form>
-                            </td>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="table-border-bottom-0 table-striped">
+                        @foreach ($sliders as $slider)
+                            <tr>
+                                <td>{{ $slider->id }}</td>
+                                <td>{{ $slider->title }}</td>
+                                <td>{!!   $slider->description !!}</td>
+                                <td class="image-cell" style="width: 250px">
+                                    <img src="{{ asset("$slider->image") }}" style="max-width: 100%;">
+                                </td>
+                                <td>{{ $slider->status == 0 ? 'Visible' : 'Hidden' }}</td>
+                                <td>
+                                    <a href="{{ route('admin.sliders.edit',$slider->id) }}"
+                                       class="btn btn-primary float-start">Edit</a>
+                                    <form method="POST" action="{{ route('admin.sliders.destroy',$slider->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger ms-1" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

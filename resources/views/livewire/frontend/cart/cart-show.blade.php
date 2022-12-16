@@ -3,16 +3,16 @@
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="shopping__cart__table">
                         <table>
                             <thead>
                             <tr>
                                 <th>Product</th>
+                                <th>Price</th>
                                 <th>Color</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -20,31 +20,39 @@
                                 @if($cartItem->product)
                                     <tr>
                                         <td class="product__cart__item">
-                                            <a href="{{ url('collections/'.$cartItem->product->category->slug.'/'.$cartItem->product->slug) }}">
+                                            <a href="{{ url('collections/'.$cartItem->product->category->slug.'/'.$cartItem->product->slug) }}"
+                                               class="d-flex">
+
                                                 @if($cartItem->product->productImages)
-                                                    <div class="product__cart__item__pic">
+                                                    <div class="product__cart__item__pic" style="width: 100px">
                                                         <img
                                                             src="{{ asset($cartItem->product->productImages[0]->image ) }}"
                                                             alt="">
                                                     </div>
-                                                @else
                                                 @endif
-                                                <br>
                                                 <div class="product__cart__item__text">
-                                                    <h6>{{ $cartItem->product->name }}</h6>
-                                                    <h5>$98.49</h5>
+                                                    <h5 class="align-items-center">{{ $cartItem->product->name }}</h5>
                                                 </div>
                                             </a>
                                         </td>
+
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__text">
+                                                <h5>{{ number_format($cartItem->product->selling_price, 0, ',', '.') }}
+                                                    VND</h5>
+                                            </div>
+                                        </td>
+
                                         @if($cartItem->productColor)
                                             @if($cartItem->productColor->color)
                                                 <td class="product__cart__item">
                                                     <div class="product__cart__item__text">
-                                                        <h6>{{ $cartItem->productColor->color->name }}</h6>
+                                                        <h5>{{ $cartItem->productColor->color->name }}</h5>
                                                     </div>
                                                 </td>
                                             @endif
                                         @endif
+
                                         <td class="quantity__item">
                                             <div class="quantity">
                                                 <div class="pro-qty-3 d-flex justify-content-center">
@@ -57,12 +65,20 @@
                                                             class="fa fa-angle-right inc qtybtn"></button>
                                                 </div>
                                             </div>
-                                        <td class="cart__price">{{ $cartItem->product->selling_price * $cartItem->quantity }}</td>
+                                        </td>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__text">
+                                                <h5>{{ number_format($cartItem->product->selling_price * $cartItem->quantity, 0, ',', '.') }} VND
+                                                </h5>
+                                            </div>
+
+                                        </td>
                                         @php
                                             $totalPrice += $cartItem->product->selling_price * $cartItem->quantity
                                         @endphp
                                         <td class="cart__close">
-                                            <button type="button" wire:click="removeCartItem({{ $cartItem->id }})">
+                                            <button type="button" class="rounded-circle border-0 bg-white"
+                                                    wire:click="removeCartItem({{ $cartItem->id }})">
                                                 <i class="fa fa-close"></i>
                                             </button>
                                         </td>
@@ -84,20 +100,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="cart__discount">
+                <div class="col-lg-12 py-5 d-flex">
+                    <div class="cart__discount col-lg-4">
                         <h6>Discount codes</h6>
                         <form action="#">
                             <input type="text" placeholder="Coupon code">
                             <button type="submit">Apply</button>
                         </form>
                     </div>
-                    <div class="cart__total">
+                    <div class="cart__total col-lg-8">
                         <h6>Cart total</h6>
-                        <ul>
-                            <li>Total <span>{{ $totalPrice }}</span></li>
+                        <div class="checkout__order__products">Product <span>Price</span></div>
+                        <ul class="checkout__total__products">
+                            @foreach($cart as $cartItem)
+                                <li>
+                                    {{ $cartItem->product->name }}
+                                    <span>{{ number_format($totalPrice, 0, ',', '.') }}  VND</span>
+                                </li>
+                            @endforeach
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <hr class="p-0" style="background: #111111">
+                        <ul>
+                            <li>Total <span>{{ number_format($totalPrice, 0, ',', '.') }}  VND</span></li>
+                        </ul>
+                        <a href="{{ route('checkout') }}" class="primary-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

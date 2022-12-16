@@ -25,18 +25,18 @@
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Brand Name</label>
-                            <input type="text" id="nameBasic" class="form-control" placeholder="Enter Name"
-                                   wire:model.defer="name"/>
+                            <label for="name" class="form-label">Brand Name</label>
+                            <input type="text" id="name" name="name" class="form-control"
+                                   placeholder="Enter Name"
+                                   wire:model="name"/>
                             @error('name') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col mb-3">
                             <label for="slug" class="form-label">Brand Slug</label>
-                            {{--                            wire:model.defer="foo"	Defers syncing the input with the Livewire property until an "action" is performed. This saves drastically on server roundtrips.--}}
-                            <input type="text" id="slug" name="slug" class="form-control" placeholder="Enter Name"
-                                   wire:change.prevent="getSlug" wire:model.defer="slug"/>
+                            <input type="text" id="slug" name="slug" class="form-control" placeholder="Enter Slug"
+                                   wire:model="slug"/>
                             @error('slug') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
                     </div>
@@ -94,16 +94,16 @@
                             </div>
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Brand Name</label>
-                                <input type="text" id="nameBasic" class="form-control" placeholder="Enter Name"
-                                       wire:model.defer="name"/>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name"
+                                       wire:model="name"/>
                                 @error('name') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
-                                <label for="nameBasic" class="form-label">Brand Slug</label>
-                                <input type="text" id="slug" name="slug" class="form-control" placeholder="Enter Name"
-                                       wire:model.defer="slug"/>
+                                <label for="slug" class="form-label">Brand Slug</label>
+                                <input type="text" id="slug" name="slug" class="form-control" placeholder="Enter Slug"
+                                       wire:model="slug"/>
                                 @error('slug') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
@@ -169,4 +169,3 @@
         </div>
     </div>
 </div>
-

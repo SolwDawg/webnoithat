@@ -10,22 +10,30 @@
     use Illuminate\Http\Request;
     use Barryvdh\DomPDF\Facade\Pdf;
     use Illuminate\Support\Facades\Mail;
+    use Yajra\DataTables\DataTables;
 
     class adminOrderController extends Controller
     {
-        public function index(Request $request)
+        public function index()
         {
-            $todayDate = Carbon::now()->format('Y-m-d');
-            $orders = Order::when($request->date != null, function ($q) use ($request) {
-                return $q->whereDate('created_at', $request->date);
-            }, function ($q) use ($todayDate) {
-                return $q->whereDate('created_at', $todayDate);
-            })->when($request->status != null, function ($q) use ($request) {
-                return $q->where('status_message', $request->status);
-            })
-                ->paginate(10);
+            return view('admin.orders.index');
+        }
 
-            return view('admin.orders.index', compact('orders'));
+        public function getOrder(Request $request)
+        {
+            if ($request->ajax()) {
+                $data = Order::latest()->get();
+
+                return DataTables::of($data)
+                    ->addColumn('action', function ($object) {
+                        $link = route("admin.order.show", $object);
+                        return "<a href='$link' class='btn btn-primary'>View</a>";
+                    })
+                    ->editColumn('created_at', function ($object) {
+                        return $object->created_at->format('d/m/Y');
+                    })
+                    ->rawColumns(['action'])->make(true);
+            }
         }
 
         public function show(int $orderId)
@@ -73,14 +81,11 @@
 
         public function mailInvoice(int $orderId)
         {
-            try {
-                $order = Order::findOrFail($orderId);
-                Mail::to("$order->email")->send(new InvoiceOrderMailable($order));
-                return redirect('admin/order/'.$orderId)->with('message',
-                    'Invoice Mail has been sent to '.$order->email);
-            } catch (Exception $e) {
-                return redirect('admin/order/'.$orderId)->with('message',
-                    'Something went wrong!');
-            }
+
+            $order = Order::findOrFail($orderId);
+            Mail::to("$order->email")->send(new InvoiceOrderMailable($order));
+            return redirect('admin/order/'.$orderId)->with('message',
+                'Invoice Mail has been sent to '.$order->email);
+
         }
     }

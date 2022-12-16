@@ -7,21 +7,42 @@
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__option">
-        <div class="offcanvas__links">
-            <a href="#">Sign in</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-                <span>Log out</span>
-            </form>
-        </div>
-        <div class="offcanvas__top__hover">
-            <span>Usd <i class="arrow_carrot-down"></i></span>
-            <ul>
-                <li>USD</li>
-                <li>EUR</li>
-                <li>USD</li>
-            </ul>
-        </div>
+        @auth
+            <div class="offcanvas__top__hover">
+
+                <span>{{ Auth::user()->name }}<i class="arrow_carrot-down"></i></span>
+                <ul>
+                    <li class="text-white">
+                        <a href="{{ url('/profile') }}"
+                           class="dropdown-item text-center align-middle h6 fw-bold">
+                            Profile
+                        </a>
+                    </li>
+                    <li class="text-white">
+                        <a href="{{ url('/orders') }}"
+                           class="dropdown-item text-center align-middle h6 fw-bold">
+                            Order List
+                        </a>
+                    </li>
+                    <li class="text-white">
+                        <a class="dropdown-item align-middle h6 fw-bold" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Log Out') }}
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  class="d-none">
+                                @csrf
+                            </form>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        @else
+            <div class="header__top__links">
+                <a href="{{ route('login') }}">Sign in</a>
+                <a href="#">FAQs</a>
+            </div>
+        @endif
     </div>
     <div class="offcanvas__nav__option">
         <a href="#" class="search-switch"><img src="{{ asset('assets/img/icon/search.png') }}" alt=""></a>
@@ -53,19 +74,33 @@
                 <div class="col-lg-6 col-md-5">
                     <div class="header__top__right">
                         @auth
-                            <div class="header__top__links">
-                                <span class="text-white">{{ Auth::user()->name }}</span>
-                            </div>
-                            <div class="header__top__links">
-                                <a class="dropdown-item align-middle" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                            <div class="header__top__hover">
+                                <span>{{ Auth::user()->name }}<i class="arrow_carrot-down"></i></span>
+                                <ul>
+                                    <li class="pt-2">
+                                        <a href="{{ url('/profile') }}"
+                                           class="dropdown-item text-center align-middle h6 fw-bold">
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li class="pt-2">
+                                        <a href="{{ url('/orders') }}"
+                                           class="dropdown-item text-center align-middle h6 fw-bold">
+                                            Order List
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item align-middle h6 fw-bold" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    <i class="bx bx-power-off me-2"></i> {{ __('Log Out') }}
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </a>
+                                            {{ __('Log Out') }}
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  class="d-none">
+                                                @csrf
+                                            </form>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         @else
                             <div class="header__top__links">
@@ -97,7 +132,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-4 col-md-12 py-md-2 py-sm-2">
+            <div class="col-lg-4 col-md-12 py-md-3 py-sm-3">
                 <form action="{{ route('searchProducts') }}" method="GET" class="d-flex">
                     <input class="form-control mx-2" type="search" name="search" value="{{ Request::get('search') }}"
                            placeholder="Search" aria-label="Search">

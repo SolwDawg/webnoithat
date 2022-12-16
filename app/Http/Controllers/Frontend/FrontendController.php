@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Frontend;
 
     use App\Http\Controllers\Controller;
+    use App\Models\Banner;
     use App\Models\Category;
     use App\Models\Product;
     use App\Models\Slider;
@@ -13,12 +14,17 @@
         public function index()
         {
             $sliders = Slider::where('status', '0')->get();
+            $banner = Banner::where('status', '0')->get();
             $trendingProducts = Product::where('trending', '1')->latest()->take(8)->get();
             $newArrivalsProducts = Product::latest()->take(8)->get();
             $featureProducts = Product::where('featured', '1')->latest()->take(8)->get();
 
-            return view('frontend.index',
-                compact('sliders', 'trendingProducts', 'newArrivalsProducts', 'featureProducts'));
+            return view('frontend.index', [
+                'sliders' => $sliders,
+                'trendingProducts' => $trendingProducts,
+                'newArrivalsProducts' => $newArrivalsProducts,
+                'featureProducts' => $featureProducts,
+            ]);
         }
 
         public function newArrivals()

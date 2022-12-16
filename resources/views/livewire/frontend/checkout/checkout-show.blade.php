@@ -26,6 +26,25 @@
                                 <input type="email" name="email" wire:model.defer="email">
                                 @error('email') <small class="text-danger">{{ $message }}</small>@enderror
                             </div>
+                            {{--                            <form action="" method="POST">--}}
+                            {{--                                @csrf--}}
+                            {{--                                <select class="form-select" wire:model="city">--}}
+                            {{--                                    <option>Default select</option>--}}
+                            {{--                                    @foreach($city as $ci)--}}
+                            {{--                                        <option value="{{ $ci->matp }}">{{ $ci->name_city }}</option>--}}
+                            {{--                                    @endforeach--}}
+                            {{--                                </select>--}}
+
+                            {{--                                @if(!is_null($city))--}}
+                            {{--                                    <select class="form-select" wire:model="province">--}}
+                            {{--                                        <option>Default select</option>--}}
+                            {{--                                        @foreach($province as $prov)--}}
+                            {{--                                            <option value="{{ $prov->maqh }}">{{ $prov->name_province }}</option>--}}
+                            {{--                                        @endforeach--}}
+                            {{--                                    </select>--}}
+                            {{--                                @endif--}}
+                            {{--                            </form>--}}
+                            {{--                            <p>{{ $selectedCity }}</p>--}}
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
                                 <input type="text" name="address" wire:model.defer="address"
@@ -39,49 +58,42 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Phone<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <button type="button" wire:click="codOrder" class="btn btn-primary"
+                                    <button type="button" wire:click="codOrder" class="site-btn"
                                             wire:click="codOrder">Cash on
                                         Delivery
                                     </button>
+
                                 </div>
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="acc">
-                                    Create an account?
-                                    <input type="checkbox" id="acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <p>Create an account by entering the information below. If you are a returning customer
-                                    please login at the top of the page</p>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Account Password<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="diff-acc">
-                                    Note about your order, e.g, special noe for delivery
-                                    <input type="checkbox" id="diff-acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Order notes<span>*</span></p>
-                                <input type="text"
-                                       placeholder="Notes about your order, e.g. special notes for delivery.">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <br/>
+
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a href="#home" class="nav-link active" role="tab"
+                                               data-toggle="tab">Home</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#profile" class="nav-link" role="tab" data-toggle="tab">About
+                                                Us</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#about" class="nav-link" role="tab" data-toggle="tab">Contact
+                                                Us</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link disabled">Disabled</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="home">1</div>
+                                        <div role="tabpanel" class="tab-pane fade" id="profile">2</div>
+                                        <div role="tabpanel" class="tab-pane fade" id="about">3</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         @if($this->totalProductAmount != '0')
@@ -96,39 +108,19 @@
                                 <h4 class="order__title">Your order</h4>
                                 <div class="checkout__order__products">Product <span>Total</span></div>
                                 <ul class="checkout__total__products">
-                                    <li>01. Vanilla salted caramel <span>$ 300.0</span></li>
-                                    <li>02. German chocolate <span>$ 170.0</span></li>
-                                    <li>03. Sweet autumn <span>$ 170.0</span></li>
-                                    <li>04. Cluten free mini dozen <span>$ 110.0</span></li>
+                                    @foreach($carts as $cartItem)
+                                        <li>
+                                            {{ $cartItem->product->name }}
+                                            <span>{{ number_format($cartItem->product->selling_price, 0, ',', '.') }}  VND</span>
+                                        </li>
+                                    @endforeach
                                 </ul>
+
                                 <ul class="checkout__total__all">
-                                    <li>Subtotal <span>$750.99</span></li>
-                                    <li>Total <span>{{ $this->totalProductAmount }}</span></li>
+                                    <li>Total
+                                        <span>{{ number_format($this->totalProductAmount, 0, ',', '.') }} VND</span>
+                                    </li>
                                 </ul>
-                                <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua.</p>
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
                     </div>
@@ -138,3 +130,38 @@
     </section>
     <!-- Checkout Section End -->
 </div>
+
+@push('script')
+
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AfyBKnn3wlbM31fh5cOQkI8BkIAtvBzEj_mtZWQ-zTbrwtrVGbIYt-XKFl2Nt4IcsEO5KWETmdLwJN1W&currency=USD"></script>
+
+    <script>
+        paypal.Buttons({
+            // Sets up the transaction when a payment button is clicked
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '77.44' // Can also reference a variable or function
+                        }
+                    }]
+                });
+            },
+            // Finalize the transaction after payer approval
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(function (orderData) {
+                    // Successful capture! For dev/demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    const transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                    // When ready to go live, remove the alert and show a success message within this page. For example:
+                    // const element = document.getElementById('paypal-button-container');
+                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+
+@endpush

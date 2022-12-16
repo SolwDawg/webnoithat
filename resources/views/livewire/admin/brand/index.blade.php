@@ -1,5 +1,5 @@
+@section('title', 'Brand')
 <div>
-
     @include('livewire.admin.brand.modal-form')
 
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -16,8 +16,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Brand Name</th>
-                        <th>SLUG</th>
                         <th>Category</th>
+                        <th>SLUG</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -67,25 +67,6 @@
             $('#addBrandModal').modal('hide');
             $('#updateBrandModal').modal('hide');
             $('#deleteBrandModal').modal('hide');
-        });
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $('#name').change(function () {
-            $("button[type='submit']").prop('disabled', true);
-            $.ajax({
-                url: '{{ route("admin.brand") }}',
-                type: 'get',
-                data: {name: $(this).val()},
-                dataType: 'json',
-                success: function (response) {
-                    $("button[type='submit']").prop('disabled', false);
-                    $("#slug").val(response.slug);
-                }
-            });
         });
     </script>
 

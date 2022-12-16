@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'All Product')
+
 @section('content')
 
     <!-- Bootstrap Table with Header - Light -->
@@ -38,7 +40,7 @@
                                 @endif
                             </td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->selling_price }}</td>
+                            <td>{{ number_format($product->selling_price, 0, ',', '.') }}VNĐ</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->status == '1' ? 'Hidden' : 'Visible' }}</td>
                             <td>

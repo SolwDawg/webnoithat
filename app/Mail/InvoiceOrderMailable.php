@@ -2,6 +2,7 @@
 
     namespace App\Mail;
 
+    use Faker\Provider\Address;
     use Illuminate\Bus\Queueable;
     use Illuminate\Contracts\Queue\ShouldQueue;
     use Illuminate\Mail\Mailable;
@@ -25,13 +26,6 @@
             $this->order = $order;
         }
 
-        public function build()
-        {
-            $subject = "Your order invoice";
-            return $this->subject($subject)
-                ->view('admin.invoice.generate-invoice');
-        }
-
         /**
          * Get the message envelope.
          *
@@ -40,7 +34,12 @@
         public function envelope()
         {
             return new Envelope(
-                subject: 'Invoice Order Mailable',
+                from: 'sondt.21it@vku.udn.vn',
+                subject: 'Invoice Order',
+                tags: ['shipment'],
+                metadata: [
+                    'order_id' => $this->order->id,
+                ],
             );
         }
 
@@ -51,9 +50,9 @@
          */
         public function content()
         {
-            $subject = "Your order invoice";
-            return $this->subject($subject)
-                ->view('admin.invoice.generate-invoice');
+            return new Content(
+                view: 'admin.invoice.generate-invoice',
+            );
         }
 
         /**

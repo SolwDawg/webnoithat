@@ -3,6 +3,7 @@
     namespace App\Models;
 
     // use Illuminate\Contracts\Auth\MustVerifyEmail;
+    use App\Models\UserDetail as UserDetailAlias;
     use Illuminate\Database\Eloquent\Casts\Attribute;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,13 +17,17 @@
         protected $fillable = [
             'name',
             'email',
+            'phone',
+            'address',
+            'profile_image',
+            'pin_code',
             'password',
             'role',
         ];
 
-        public function userDetail(): \Illuminate\Database\Eloquent\Relations\HasOne
+        public function UserDetail(): \Illuminate\Database\Eloquent\Relations\HasOne
         {
-            return $this->hasOne(UserDetail::class, 'user_id', 'id');
+            return $this->hasOne(UserDetailAlias::class, 'user_id', 'id');
         }
 
         protected $hidden = [

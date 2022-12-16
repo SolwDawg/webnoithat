@@ -1,119 +1,227 @@
-<div class="card">
-    <div class="card-body">
-        <div class="container mb-5 mt-3">
-            <div class="row d-flex align-items-baseline">
-                <div class="col-xl-9">
-                    <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #123-123</strong></p>
-                </div>
-                <div class="col-xl-3 float-end">
-                    <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i
-                            class="fas fa-print text-primary"></i> Print</a>
-                    <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
-                            class="far fa-file-pdf text-danger"></i> Export</a>
-                </div>
-                <hr>
-            </div>
-
-            <div class="container">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
-                        <p class="pt-0">MDBootstrap.com</p>
-                    </div>
-
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
 
 
-                <div class="row">
-                    <div class="col-xl-8">
-                        <ul class="list-unstyled">
-                            <li class="text-muted">To: <span style="color:#5d9fc5 ;">John Lorem</span></li>
-                            <li class="text-muted">Street, City</li>
-                            <li class="text-muted">State, Country</li>
-                            <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
-                        </ul>
-                    </div>
-                    <div class="col-xl-4">
-                        <p class="text-muted">Invoice</p>
-                        <ul class="list-unstyled">
-                            <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                    class="fw-bold">ID:</span>#123-456
-                            </li>
-                            <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                    class="fw-bold">Creation Date: </span>Jun 23,2021
-                            </li>
-                            <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                    class="me-1 fw-bold">Status:</span><span
-                                    class="badge bg-warning text-black fw-bold">
-                  Unpaid</span></li>
-                        </ul>
-                    </div>
-                </div>
+    <style>
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: normal;
+            src: url("{{ asset('Roboto-Regular.ttf') }}");
+        }
 
-                <div class="row my-2 mx-1 justify-content-center">
-                    <table class="table table-striped table-borderless">
-                        <thead style="background-color:#84B0CA ;" class="text-white">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Amount</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Pro Package</td>
-                            <td>4</td>
-                            <td>$200</td>
-                            <td>$800</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Web hosting</td>
-                            <td>1</td>
-                            <td>$10</td>
-                            <td>$10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Consulting</td>
-                            <td>1 year</td>
-                            <td>$300</td>
-                            <td>$300</td>
-                        </tr>
-                        </tbody>
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: bold;
+            src: url("{{ asset('admin/assets/vendor/fonts/Roboto/Roboto-Bold.ttf') }}");
+        }
 
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-xl-8">
-                        <p class="ms-3">Add additional notes and payment information</p>
+        html,
+        body {
+            margin: 10px;
+            padding: 10px;
+            font-family: Roboto, sans-serif;
+        }
 
-                    </div>
-                    <div class="col-xl-3">
-                        <ul class="list-unstyled">
-                            <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li>
-                            <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111</li>
-                        </ul>
-                        <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
-                                style="font-size: 25px;">$1221</span></p>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-xl-10">
-                        <p>Thank you for your purchase</p>
-                    </div>
-                    <div class="col-xl-2">
-                        <button type="button" class="btn btn-primary text-capitalize"
-                                style="background-color:#60bdf3 ;">Pay Now
-                        </button>
-                    </div>
-                </div>
+        h1, h2, h3, h4, h5, h6, p, span, label {
+            font-family: Roboto, sans-serif;
+        }
 
-            </div>
-        </div>
-    </div>
-</div>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0 !important;
+        }
+
+        table thead th {
+            height: 28px;
+            text-align: left;
+            font-size: 16px;
+            font-family: Roboto,sans-serif;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .heading {
+            font-size: 24px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            font-family: Roboto, sans-serif;
+        }
+
+        .small-heading {
+            font-size: 18px;
+            font-family: Roboto, sans-serif;
+        }
+
+        .total-heading {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: Roboto, sans-serif;
+        }
+
+        .order-details tbody tr td:nth-child(1) {
+            width: 20%;
+        }
+
+        .order-details tbody tr td:nth-child(3) {
+            width: 20%;
+        }
+
+        .text-start {
+            text-align: left;
+        }
+
+        .text-end {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .company-data span {
+            margin-bottom: 4px;
+            display: inline-block;
+            font-family: Roboto, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .no-border {
+            border: 1px solid #fff !important;
+        }
+
+        .bg-blue {
+            background-color: #414ab1;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<table class="order-details">
+    <thead>
+    <tr>
+        <th width="50%" colspan="2">
+            <h2 class="text-start">{{ $appSetting->website_name  }}</h2>
+        </th>
+        <th width="50%" colspan="2" class="text-end company-data">
+            <span>Invoice Id: #{{ $order->id }}</span> <br>
+            <span>Date: {{ $order->created_at->format('d-m-Y h:i A') }}</span> <br>
+            <span>Zip code : {{ $order->pincode }}</span> <br>
+            <span>Address: {{ $order->address }}</span> <br>
+        </th>
+    </tr>
+    <tr class="bg-blue">
+        <th width="50%" colspan="2">Order Details</th>
+        <th width="50%" colspan="2">User Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Order Id:</td>
+        <td>{{ $order->id }}</td>
+
+        <td>Full Name:</td>
+        <td>{{ $order->fullname }}</td>
+    </tr>
+    <tr>
+        <td>Tracking Id/No.:</td>
+        <td>{{ $order->tracking_no }}</td>
+
+        <td>Email:</td>
+        <td>{{ $order->email }}</td>
+    </tr>
+    <tr>
+        <td>Ordered Date:</td>
+        <td>{{ $order->created_at->format('d-m-Y h:i A') }}</td>
+
+        <td>Phone:</td>
+        <td>{{ $order->phone }}</td>
+    </tr>
+    <tr>
+        <td>Payment Mode:</td>
+        <td>{{ $order->payment_mode }}</td>
+
+        <td>Address:</td>
+        <td>{{ $order->address }}</td>
+    </tr>
+    <tr>
+        <td>Order Status:</td>
+        <td>{{ $order->status_message }}</td>
+
+        <td>Pin code:</td>
+        <td>{{ $order->pincode }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th class="no-border text-start heading" colspan="5">
+            Order Items
+        </th>
+    </tr>
+    <tr class="bg-blue">
+        <th>ID</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    @php
+        $totalPrice = 0;
+    @endphp
+    @foreach($order->orderItems as $orderItem)
+        <tr>
+            <td width="10%">{{ $orderItem->id }}</td>
+            <td>
+                {{ $orderItem->product->name }}
+                @if ($orderItem->productColor)
+                    @if ($orderItem->productColor->color)
+                        <span>- Color: {{ $orderItem->productColor->color->name }}</span>
+                    @endif
+                @endif
+            </td>
+            <td width="10%">{{ number_format( $orderItem->price, 0, ',', '.') }}
+                VNĐ
+            </td>
+            <td width="10%">{{ $orderItem->quantity }}</td>
+            <td width="15%" class="fw-bold">
+                {{ number_format( $orderItem->quantity * $orderItem->price, 0, ',', '.') }} VNĐ
+            </td>
+        </tr>
+        @php
+            $totalPrice += $orderItem->quantity * $orderItem->price;
+        @endphp
+    @endforeach
+    <tr>
+        <td colspan="4" class="total-heading">Total Amount :</td>
+        <td colspan="1" class="total-heading">
+            {{ number_format( $totalPrice, 0, ',', '.') }} VNĐ
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<p class="text-center">
+    Thank your for shopping
+</p>
+
+</body>
+</html>

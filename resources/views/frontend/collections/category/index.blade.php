@@ -11,8 +11,8 @@
             </div>
             @forelse ($categories as $category)
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 p-4">
-                    <div class="product__item border-3">
-                        <a href="{{ url('/collections/'.$category->slug)  }}">
+                    <div class="card product__item">
+                        <a href="{{ url('/collections/'.$category->slug)  }}" class="p-2">
                             <div class="product__item__pic set-bg"
                                  data-setbg="{{ $category->image }}">
                             </div>
@@ -23,6 +23,7 @@
                     </div>
                 </div>
             @empty
+                <h5 class="text-center">No Category found</h5>
             @endforelse
         </div>
     </div>

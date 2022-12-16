@@ -32,7 +32,6 @@
             ];
         }
 
-
         public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
         {
             return $this->hasMany(Product::class, 'category_id', 'id');
@@ -43,7 +42,7 @@
             return $this->hasMany(Product::class, 'category_id', 'id')->latest()->take(16);
         }
 
-        public function brands()
+        public function brands(): \Illuminate\Database\Eloquent\Relations\HasMany
         {
             return $this->hasMany(Brand::class, 'category_id', 'id')->where('status', '0');
         }
