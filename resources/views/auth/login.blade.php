@@ -87,9 +87,11 @@
                                 <div class="divider-text"><h6>Or Login with</h6></div>
                             </div>
                             <div class="social-accounts d-flex justify-content-center">
-                                <a href="#" title="Facebook"><i class='bx bxl-facebook'></i></a>
-                                <a href="#" title="Instagram"><i class='bx bxl-instagram' ></i></a>
-                                <a href="#" title="Google"><i class='bx bxl-google' ></i></a>
+                                <a href="{{ url('auth/facebook') }}" title="Facebook"><i
+                                        class='bx bxl-facebook'></i></a>
+                                <a href="#" title="Instagram"><i class='bx bxl-instagram'></i></a>
+                                <a href="{{ url('/auth/redirect/google') }}" title="Google"><i
+                                        class='bx bxl-google'></i></a>
                             </div>
                         </div>
                     </div>

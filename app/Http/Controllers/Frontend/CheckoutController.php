@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+    namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+    use App\Http\Controllers\Controller;
+    use App\Models\Product;
+    use App\Models\Province;
+    use App\Models\Wards;
+    use Illuminate\Http\Request;
 
-class CheckoutController extends Controller
-{
-    public function index()
+    class CheckoutController extends Controller
     {
-        return view('frontend.checkout.index');
+        public function index()
+        {
+            return view('frontend.checkout.index');
+        }
     }
-}

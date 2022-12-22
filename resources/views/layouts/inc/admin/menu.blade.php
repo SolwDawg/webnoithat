@@ -6,7 +6,7 @@
               <span class="app-brand-logo">
                     <img src="{{ asset('assets/img/banner/Logo.png') }}" width="50px">
               </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Solw</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">{{ $appSetting->website_name }}</span>
         </a>
     </div>
 
@@ -69,15 +69,6 @@
                 </li>
             </ul>
         </li>
-
-        <!-- Brands -->
-        <li class="menu-item">
-            <a href="{{ route('admin.orders.index') }}" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-receipt'></i>
-                <div>Orders</div>
-            </a>
-        </li>
-
         <!-- Colors -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -97,7 +88,20 @@
                 </li>
             </ul>
         </li>
+        <!-- Order -->
+        <li class="menu-item">
+            <a href="{{ route('admin.orders.index') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-receipt'></i>
+                <div>Orders</div>
+            </a>
+        </li>
 
+        <!-- Colors -->
+
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Settings Website</span>
+        </li>
         <!-- Sliders -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -118,11 +122,58 @@
             </ul>
         </li>
 
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-widget'></i>
+                <div data-i18n="Account Settings">Banner</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.sliders.index') }}" class="menu-link">
+                        <div data-i18n="Account">All Banner</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.sliders.create') }}" class="menu-link">
+                        <div data-i18n="Notifications">Add Banner</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <!-- Setting website -->
         <li class="menu-item">
             <a href="{{ route('admin.settings') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-cog'></i>
                 <div>Setting website</div>
+            </a>
+        </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Users</span>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-user-account'></i>
+                <div data-i18n="Account Settings">Users</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.users.index') }}" class="menu-link">
+                        <div data-i18n="Account">All Users</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.users.create') }}" class="menu-link">
+                        <div data-i18n="Notifications">Add User</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="{{ url('/admin/profile') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-user-circle'></i>
+                <div>Profile</div>
             </a>
         </li>
     </ul>

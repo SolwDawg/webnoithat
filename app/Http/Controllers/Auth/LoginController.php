@@ -29,7 +29,7 @@
                 if (auth()->user()->role == 'super-admin') {
                     return redirect()->route('admin.dashboard');
                 } elseif (auth()->user()->role == 'manager') {
-                    return redirect()->route('manage.home');
+                    return redirect()->route('home');
                 } else {
                     return redirect()->route('home');
                 }

@@ -87,29 +87,37 @@
                 @if ($newArrivalsProducts)
                     @foreach($newArrivalsProducts as $product)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                            <div class="product__item sale">
+                            <div class="card product__item p-2">
                                 <div class="product__item__pic set-bg"
                                      data-setbg="{{asset($product->productImages[0]->image)}}">
-                                    <span class="label">New</span>
                                     <ul class="product__hover">
+                                        <li>
+                                            <button type="button"
+                                                    class="border-0 p-0"
+                                                    wire:click="addToWishList({{ $product->id }})"><img
+                                                    src="{{ asset('assets/img/icon/heart.png') }}" alt="">
+                                            </button>
+                                        </li>
+
                                         <li>
                                             <a href="{{ url('/collections/'.$product->category->slug.'/'.$product->slug) }}"><img
                                                     src="{{ asset('assets/img/icon/search.png') }}" alt=""></a>
                                         </li>
                                     </ul>
-
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>{{ $product->name }}</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>{{ $product->selling_price }}</h5>
+                                    <h5>{{ $product->name }}</h5>
+                                    @if($product->selling_price == $product->original_price)
+                                        <h5 class="h6 py-2">{{ number_format($product->selling_price, 0, ',', '.') }}VNĐ</h5>
+                                    @else
+                                        <h5 class="h6 py-2">
+                                                <span style="color: #b7b7b7;
+                                                                    font-weight: 400;
+                                                                    text-decoration: line-through;
+                                                }">{{ number_format($product->original_price, '0',',','.') }}VNĐ</span>
+                                            {{ number_format($product->selling_price, 0, ',', '.') }}VNĐ
+                                        </h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -121,31 +129,38 @@
                 @if ($trendingProducts)
                     @foreach($trendingProducts as $product)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix trendings">
-                            <div class="product__item sale">
+                            <div class="card product__item p-2">
                                 <div class="product__item__pic set-bg"
                                      data-setbg="{{asset($product->productImages[0]->image)}}">
-                                    <label class="label">New</label>
                                     <ul class="product__hover">
+                                        <li>
+                                            <button type="button"
+                                                    class="border-0 p-0"
+                                                    wire:click="addToWishList({{ $product->id }})"><img
+                                                    src="{{ asset('assets/img/icon/heart.png') }}" alt="">
+                                            </button>
+                                        </li>
 
                                         <li>
                                             <a href="{{ url('/collections/'.$product->category->slug.'/'.$product->slug) }}"><img
                                                     src="{{ asset('assets/img/icon/search.png') }}" alt=""></a>
                                         </li>
                                     </ul>
-
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>{{ $product->name }}</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>{{ $product->selling_price }}</h5>
-
+                                    <h5>{{ $product->name }}</h5>
+                                    @if($product->selling_price == $product->original_price)
+                                        <h5 class="h6 py-2">{{ number_format($product->selling_price, 0, ',', '.') }}
+                                            VNĐ</h5>
+                                    @else
+                                        <h5 class="h6 py-2">
+                                                <span style="color: #b7b7b7;
+                                                                    font-weight: 400;
+                                                                    text-decoration: line-through;
+                                                }">{{ number_format($product->original_price, '0',',','.') }}VNĐ</span>
+                                            {{ number_format($product->selling_price, 0, ',', '.') }}VNĐ
+                                        </h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -157,29 +172,38 @@
                 @if ($featureProducts)
                     @foreach($featureProducts as $product)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix featured">
-                            <div class="product__item sale">
+                            <div class="card product__item p-2">
                                 <div class="product__item__pic set-bg"
                                      data-setbg="{{asset($product->productImages[0]->image)}}">
-                                    <label class="label">New</label>
                                     <ul class="product__hover">
+                                        <li>
+                                            <button type="button"
+                                                    class="border-0 p-0"
+                                                    wire:click="addToWishList({{ $product->id }})"><img
+                                                    src="{{ asset('assets/img/icon/heart.png') }}" alt="">
+                                            </button>
+                                        </li>
+
                                         <li>
                                             <a href="{{ url('/collections/'.$product->category->slug.'/'.$product->slug) }}"><img
                                                     src="{{ asset('assets/img/icon/search.png') }}" alt=""></a>
                                         </li>
                                     </ul>
-
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>{{ $product->name }}</h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>{{ $product->selling_price }}</h5>
-
+                                    <h5>{{ $product->name }}</h5>
+                                    @if($product->selling_price == $product->original_price)
+                                        <h5 class="h6 py-2">{{ number_format($product->selling_price, 0, ',', '.') }}
+                                            VNĐ</h5>
+                                    @else
+                                        <h5 class="h6 py-2">
+                                                <span style="color: #b7b7b7;
+                                                                    font-weight: 400;
+                                                                    text-decoration: line-through;
+                                                }">{{ number_format($product->original_price, '0',',','.') }}VNĐ</span>
+                                            {{ number_format($product->selling_price, 0, ',', '.') }}VNĐ
+                                        </h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>

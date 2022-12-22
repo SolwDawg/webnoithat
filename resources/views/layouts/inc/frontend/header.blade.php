@@ -127,8 +127,6 @@
                         </li>
                         <li class="{{ Request::is('collections') ? 'active' : '' }}">
                             <a href="{{ route('category') }}">Categories</a></li>
-                        <li class="{{ Request::is('contact') ? 'active' : '' }}">
-                            <a href=" ./contact.html">Contacts</a></li>
                     </ul>
                 </nav>
             </div>

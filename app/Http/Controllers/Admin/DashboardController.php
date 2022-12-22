@@ -8,7 +8,6 @@
     use App\Models\Order;
     use App\Models\Product;
     use App\Models\User;
-    use Illuminate\Http\Request;
     use Illuminate\Support\Carbon;
 
     class DashboardController extends Controller
@@ -20,16 +19,16 @@
             $totalBrands = Brand::count();
 
             $totalAllUsers = User::count();
-            $totalUsers = User::where('role', '0');
-            $totalAdmin = User::where('role', '1');
+            $totalUsers = User::where('role', 0)->count();
+            $totalAdmin = User::where('role', 1)->count();
 
-            $todayDate = Carbon::now()->format('d-m-Y');
+            $todayDate = Carbon::now()->format('Y-m-d');
             $thisMonth = Carbon::now()->format('m');
             $thisYear = Carbon::now()->format('Y');
 
             $totalOrder = Order::count();
-            $todayOrder = Order::whereDate('created_at', $todayDate)->count();
-            $thisMonthOrder = Order::whereDate('created_at', $thisMonth)->count();
+            $todayOrder = Order::where('created_at', $todayDate)->count();
+            $thisMonthOrder = Order::where('created_at', $thisMonth)->count();
             $thisYearOrder = Order::whereDate('created_at', $thisYear)->count();
 
             return view('admin.dashboard', compact(

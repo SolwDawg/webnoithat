@@ -7,10 +7,12 @@
     use App\Models\Wishlist;
     use Illuminate\Support\Facades\Auth;
     use Livewire\Component;
+    use Livewire\WithPagination;
 
     class Index extends Component
     {
         public $products, $category, $brandInputs = [], $priceInput, $product;
+
 
         protected $queryString = [
             'brandInputs' => ['except' => '', 'as' => 'brand'],

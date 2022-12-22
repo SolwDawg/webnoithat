@@ -187,6 +187,7 @@
 
         public function render()
         {
+
             return view('livewire.frontend.product.view', [
                 'category' => $this->category,
                 'product' => $this->product,

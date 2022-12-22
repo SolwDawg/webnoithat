@@ -50,6 +50,34 @@
                             </div>
                         </div>
                     </div>
+                </div> <div class="row">
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="fw-semibold d-block mb-4">All Users</h4>
+                                <h2 class="card-title my-3">{{ $totalAllUsers }}</h2>
+                                <a href="{{ url('admin/users') }}">view</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="fw-semibold d-block mb-4">Total Users</h4>
+                                <h2 class="card-title my-3">{{ $totalUsers }}</h2>
+                                <a href="{{ url('admin/users') }}">view</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="fw-semibold d-block mb-4">Total Admin</h4>
+                                <h2 class="card-title my-3">{{ $totalAdmin }}</h2>
+                                <a href="{{ url('admin/users') }}">view</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

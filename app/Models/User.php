@@ -23,6 +23,8 @@
             'pin_code',
             'password',
             'role',
+            'provider',
+            'provider_id',
         ];
 
         public function UserDetail(): \Illuminate\Database\Eloquent\Relations\HasOne

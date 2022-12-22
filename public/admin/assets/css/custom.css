@@ -168,6 +168,12 @@ hr {
     vertical-align: bottom !important;
 }
 
+.product__item__text h6 span {
+    color: red;
+}
+
+
+
 
 
 

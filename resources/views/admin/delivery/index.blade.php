@@ -4,29 +4,19 @@
 
 @section('content')
 
-    <!-- Bootstrap Table with Header - Light -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page/</span> All Product</h4>
-        @if(session('message'))
-            <div class="alert alert-success">{{ session('message') }}</div>
-        @endif
         <div class="card">
-            <div class="card-header d-flex justify-content-between mb-2">
-                <h4 class="">Available Product Information</h4>
-                <a href="{{ route('admin.products.create') }}" class="btn btn-primary">Add Product</a>
-            </div>
-            <div class="card-body">
-                <table class="table table-responsive text-nowrap delivery_datatable">
-                    <thead class="table-light">
-                    <tr>
+            <h3 class="card-header">All Delivery</h3>
+            <div class="table-responsive text-nowrap p-3">
+                <table class="table" id="delivery-Datatables">
+                    <thead>
+                    <tr class="text-nowrap">
                         <th>City</th>
                         <th>Province</th>
                         <th>Ward</th>
-                        <th></th>
+                        <th>Fee Ship</th>
                     </tr>
                     </thead>
-                    <tbody></tbody>
-
                 </table>
             </div>
         </div>
@@ -35,18 +25,22 @@
 @endsection
 
 @push('script')
+
     <script type="text/javascript">
-        $(document).ready(function () {
-            let table = $('.delivery_datatable').DataTable({
+        $(function () {
+            let table = $('#delivery-Datatables').DataTable({
+                select: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('admin.delivery')!!}',
+                ajax: "{{ route('admin.delivery.list') }}",
                 columns: [
-                    {data: 'city', name: 'city'},
-                    {data: 'province', name: 'province'},
-                    {data: 'ward', name: 'ward'},
+                    {data: 'fee_city', name: 'fee_city'},
+                    {data: 'fee_province', name: 'fee_province'},
+                    {data: 'fee_wards', name: 'fee_wards'},
+                    {data: 'fee_feeship', name: 'fee_feeship'},
                 ],
-            });
-        });
+            })
+        })
     </script>
+
 @endpush

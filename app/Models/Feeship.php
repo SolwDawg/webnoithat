@@ -17,4 +17,19 @@
             'fee_wards',
             'fee_feeship'
         ];
+
+        public function city()
+        {
+            return $this->belongsTo(City::class, 'fee_city', 'matp');
+        }
+
+        public function province()
+        {
+            return $this->belongsTo(Province::class, 'fee_province', 'maqh');
+        }
+
+        public function wards()
+        {
+            return $this->belongsTo(Wards::class, 'fee_wards', 'xaid');
+        }
     }

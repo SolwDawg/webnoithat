@@ -15,7 +15,7 @@
         |
         */
 
-        'name' => env('APP_NAME', 'Laravel'),
+        'name' => env('APP_NAME', 'Web Nội thất'),
 
         /*
         |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@
         |
         */
 
-        'timezone' => 'UTC',
+        'timezone' => 'Asia/Ho_Chi_Minh',
 
         /*
         |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@
         |
         */
 
-        'locale' => 'en',
+        'locale' => 'vn',
 
         /*
         |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@
         |
         */
 
-        'fallback_locale' => 'en',
+        'fallback_locale' => 'vn',
 
         /*
         |--------------------------------------------------------------------------
@@ -195,6 +195,7 @@
             App\Providers\EventServiceProvider::class,
             App\Providers\RouteServiceProvider::class,
             Yajra\DataTables\DataTablesServiceProvider::class,
+            Laravel\Socialite\SocialiteServiceProvider::class,
         ],
 
         /*
@@ -211,6 +212,7 @@
         'aliases' => Facade::defaultAliases()->merge([
             // 'ExampleClass' => App\Example\ExampleClass::class,
             'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+            'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         ])->toArray(),
 
     ];

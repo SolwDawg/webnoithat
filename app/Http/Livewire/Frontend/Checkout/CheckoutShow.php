@@ -8,8 +8,6 @@
     use App\Models\Order;
     use App\Models\Orderitem;
     use App\Models\Province;
-    use App\Models\Wards;
-    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Mail;
     use Illuminate\Support\Str;
     use Livewire\Component;
@@ -18,6 +16,50 @@
     {
         public $carts, $totalProductAmount;
         public $fullname, $email, $phone, $pincode, $address, $payment_mode = null, $payment_id = null;
+
+
+        protected $listeners = [
+            'validationForAll',
+            'transactionEmit' => 'paidOnlineOrder'
+        ];
+
+        public function paidOnlineOrder($value)
+        {
+            $this->payment_id = $value;
+            $this->payment_mode = 'Paid by Paypal';
+
+            $codOrder = $this->placeOrder();
+            if ($codOrder) {
+                Cart::where('user_id', auth()->user()->id)->delete();
+
+                try {
+                    $order = Order::findOrFail($codOrder->id);
+                    Mail::to("$order->email")->send(new PlaceOrderMailable($order));
+                } catch (\Exception $e) {
+
+                }
+
+                session()->flash('message', 'Order Placed Successfully');
+                $this->dispatchBrowserEvent('message', [
+                    'text' => 'Order Placed Successfully',
+                    'type' => 'success',
+                    'status' => 200
+                ]);
+
+                return redirect()->to('thank-you');
+            } else {
+                $this->dispatchBrowserEvent('message', [
+                    'text' => 'Something went wrong',
+                    'type' => 'error',
+                    'status' => 500
+                ]);
+            }
+        }
+
+        public function validationForAll()
+        {
+            $this->validate();
+        }
 
         public function rules()
         {
@@ -108,11 +150,6 @@
             return $this->totalProductAmount;
         }
 
-        public function updatedCity($matp)
-        {
-            $this->provinces = Province::where('matp', $matp)->get();
-        }
-
         public function render(
         ): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
         {
@@ -131,7 +168,6 @@
             return view('livewire.frontend.checkout.checkout-show', [
                 'totalProductAmount' => $this->totalProductAmount,
                 'carts' => $this->carts,
-                'city' => $city,
             ]);
         }
     }

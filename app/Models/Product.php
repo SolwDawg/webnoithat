@@ -53,4 +53,8 @@
         {
             return $this->hasMany(ProductColor::class, 'product_id', 'id');
         }
+
+        public function comments() {
+            return $this->hasMany(Comment::class)->whereNull('parent_id');
+        }
     }

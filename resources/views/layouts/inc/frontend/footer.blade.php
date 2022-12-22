@@ -7,7 +7,10 @@
                     <div class="footer__logo">
                         <a href="{{ url('/')  }}"><img src="{{ asset('assets/img/banner/Logo_removebg.png') }}" alt="" width="80px"></a>
                     </div>
-                    <p>{{ $appSetting->meta_description }}</p>
+                    <p class="py-1 m-0">{!! $appSetting->meta_description !!}</p>
+                    <p class="p-0 m-0">Adress: {!! $appSetting->address !!}</p>
+                    <p class="p-0 m-0">Phone: {!! $appSetting->phone1 !!}</p>
+                    <p class="p-0 m-0">Email: {!! $appSetting->email1 !!}</p>
                 </div>
             </div>
             <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">

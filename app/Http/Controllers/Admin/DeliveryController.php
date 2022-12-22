@@ -12,16 +12,35 @@
 
     class DeliveryController extends Controller
     {
-        public function index(Request $request)
+        public function index()
         {
-           if ($request->ajax()) {
-               $data = Feeship::latest()->get();
-
-               return DataTables::of($data)->addIndexColumn()->make(true);
-           }
+            return view('admin.delivery.index');
         }
 
-        public function create(Request $request)
+        public function getDelivery(Request $request)
+        {
+            if ($request->ajax())
+            {
+                $data = Feeship::latest()->get();
+
+                return DataTables::of($data)
+                    ->editColumn('fee_city', function (Feeship $fee) {
+                        return $fee->city->name_city;
+                    })
+                    ->editColumn('fee_province', function (Feeship $fee) {
+                        return $fee->province->name_province;
+                    })
+                    ->editColumn('fee_wards', function (Feeship $fee) {
+                        return $fee->wards->name_wards;
+                    })
+                    ->editColumn('fee_feeship', function ($object) {
+                        return number_format($object->fee_feeship, 0, ',', '.'). ' VNĐ';
+                    })
+                    ->make(true);
+            }
+        }
+
+        public function create()
         {
             $city = City::orderBy('matp', 'ASC')->get();
             return view('admin.delivery.create', compact('city'));
@@ -45,8 +64,8 @@
                         $output .= '<option value="'.$wards->xaid.'">'.$wards->name_wards.'</option>';
                     }
                 }
+                echo $output;
             }
-            echo $output;
         }
 
         public function store(Request $request)

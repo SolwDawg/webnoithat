@@ -8,7 +8,7 @@
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page/</span> Add Category</h4>
         <div class="col-xxl">
             <div class="card mb-4">
-                <div class="card-body">
+                <div class="card-body align-content-center justify-content-center d-flex">
                     <form action="{{ route('admin.delivery.store') }}" method="POST" class="col-md-6 align-items-center">
                         @csrf
                         <div class="mb-3">

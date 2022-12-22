@@ -9,6 +9,7 @@
     <meta name="keywords" content="@yield('meta_keyword')">
     <meta name="description" content="@yield('meta_description')">
     <title>@yield('title')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/banner/favicon.ico') }}">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -61,11 +62,14 @@
 
 <script>
     window.addEventListener('message', event => {
-        alertify.set('notifier','position', 'top-right');
-        alertify.notify(event.detail.text, event.detail.type);
+        if(event.detail) {
+            alertify.set('notifier','position', 'top-right');
+            alertify.notify(event.detail.text, event.detail.type);
+        }
     })
 </script>
 
 @livewireScripts
+@stack('scripts')
 </body>
 </html>
